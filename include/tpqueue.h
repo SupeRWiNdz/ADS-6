@@ -13,9 +13,6 @@ class TPQueue {
     TPQueue() : first(0), last(0), count(0) {
         arr = new T[size];
     }
-    ~TPQueue() {
-        delete[] arr;
-    }
     bool isEmpty() const {
         return 0 == count;
     }
@@ -30,7 +27,7 @@ class TPQueue {
             while (search != last && value.prior <= arr[search].prior)
                 ++search;
             for (int i = size; i > search; i--)
-                arr[i] = arr[i - 1];
+                arr[(i + size) % size] = arr[(i - 1 + size) % size];
             ++count;
             arr[search] = value;
         }
