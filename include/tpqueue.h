@@ -34,7 +34,7 @@ class TPQueue {
                     break;
                 }
             }
-            for (int i = last; i != search; i--) {
+            for (int i = last; i > search; i--) {
                 arr[i % size] = arr[(i - 1) % size];
             }
             arr[search % size] = value;
