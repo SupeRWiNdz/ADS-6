@@ -23,22 +23,22 @@ class TPQueue {
         return size == count;
     }
     void push(const T& value) {
-        if (count > size) {
+        if (isFill()) {
             throw std::string("Full!");
         } else {
-            int search = first;
-            while (search != last) {
-                if (value.prior <= arr[(search - 1 + size) % size].prior) {
-                    arr[search] = arr[search + 1 + size) % size];
-                    search = (search - 1 + size) % size
-                } else {
-                break; }
-            }
-            for (int i = last; i != search; (i - 1 + size) % size) {
-                arr[i] = arr[(i - 1 + size) % size];
-            }
             count++;
-            arr[search] = value;
+            int search = last;
+            for (int i = first; i < last; i++) {
+                if (arr[i].prior < value.prior) {
+                    search = i;
+                    break;
+                }
+            }
+            for (int i = last; i != search; i--) {
+                arr[i % size] = arr[(i - 1) % size];
+            }
+            arr[search % size] = value;
+            last++;
         }
     }
     const T& pop() {
