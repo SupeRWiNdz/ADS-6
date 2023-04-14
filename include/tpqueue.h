@@ -29,10 +29,10 @@ class TPQueue {
             int search = first;
             while (search != last && value.prior <= arr[search].prior)
                 search = (++search) % size;
-            for (int i = last; i > search; (i - 1 + size) % size)
+            for (int i = last; i != search; (i - 1 + size) % size)
                 arr[i] = arr[(i - 1 + size) % size];
-            ++count;
-            last = (last++) % size;
+            count++;
+            last = (last + 1) % size;
             arr[search] = value;
         }
     }
