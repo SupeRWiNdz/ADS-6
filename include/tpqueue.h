@@ -3,15 +3,17 @@
 #define INCLUDE_TPQUEUE_H_
 #include <string>
 
-template<typename T, int size>
 class TPQueue {
  private:
     T arr[size];
     int first, last, count;
 
  public:
-    TPQueue : first(0), last(0), count(0) {
+    TPQueue() : first(0), last(0), count(0) {
         arr = new T[size];
+    }
+    ~TPQueue() {
+        delete[] arr;
     }
     bool isEmpty() const {
         return 0 == count;
@@ -22,7 +24,8 @@ class TPQueue {
     void push(const T& value) {
         if (isFull()) {
             throw std::string("Full!");
-        } else {
+        }
+        else {
             int search = first;
             while (search != last && value.prior <= arr[search].prior)
                 ++search;
