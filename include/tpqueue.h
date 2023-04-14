@@ -25,9 +25,9 @@ class TPQueue {
         } else {
             int search = first;
             while (search != last && value.prior <= arr[search].prior)
-                ++search;
+                search = (search + 1 + size) % size;
             for (int i = size; i > search; (i-1+size) % size)
-                arr[(i + size) % size] = arr[(i - 1 + size) % size];
+                arr[i] = arr[(i - 1 + size) % size];
             ++count;
             arr[search] = value;
         }
@@ -36,7 +36,7 @@ class TPQueue {
         if (isEmpty())
             throw std::string("empty");
         count--;
-        return arr[first++ % size];
+        return arr[(first++) % size];
     }
 };
 
