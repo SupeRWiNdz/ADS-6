@@ -27,18 +27,21 @@ class TPQueue {
             throw std::string("Full!");
         } else {
             int search = first;
-            while (search != last && value.prior <= arr[search].prior)
+            while (search != last && value.prior <= arr[search].prior) {
                 search = (++search) % size;
-            for (int i = last; i != search; (i - 1 + size) % size)
+            }
+            for (int i = last; i != search; (i - 1 + size) % size) {
                 arr[i] = arr[(i - 1 + size) % size];
+            }
             count++;
             last = (last + 1) % size;
             arr[search] = value;
         }
     }
     const T& pop() {
-        if (isEmpty())
+        if (isEmpty()) {
             throw std::string("empty");
+            }
         count--;
         return arr[(first++) % size];
     }
