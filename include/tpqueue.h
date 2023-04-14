@@ -17,10 +17,9 @@ class TPQueue {
         return size == count;
     }
     void push(const T& value) {
-        if (isFull())
+        if (isFull()) {
             throw std::string("Full!");
-        else
-        {
+        } else {
             int search = first;
             while (search != last && value.prior <= arr[search].prior)
                 ++search;
