@@ -13,6 +13,9 @@ class TPQueue {
     TPQueue() : first(0), last(0), count(0) {
         arr = new T[size];
     }
+    ~TPQueue() {
+        delete[] arr;
+    }
     bool isEmpty() const {
         return 0 == count;
     }
