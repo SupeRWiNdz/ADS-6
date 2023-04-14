@@ -8,6 +8,7 @@ class TPQueue {
  private:
     T arr[size];
     int first, last, count;
+
  public:
     TQueue:first(0), last(0), count(0) {}
     bool isEmpty() const {
